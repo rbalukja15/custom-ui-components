@@ -3,34 +3,33 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import { Button, Checkbox } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
-import { styled as muiStyled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import * as React from 'react'
-import styled from 'styled-components'
 
 import { categorizedStores } from './constants'
 import { Store } from './types'
 
-const GroupHeader = styled.span<GroupHeaderProps>`
-  position: sticky;
-  top: -8px;
-  padding: 4px 10px;
-  color: ${props => props.theme.tokens.text.label.reversed};
-  background-color: ${props => props.theme.tokens.text.label.esgRegular};
-`
+const GroupHeader = styled('span')<GroupHeaderProps>(({ theme }) => ({
+  position: 'sticky',
+  top: '-8px',
+  padding: '4px 10px',
+  color: theme.palette.primary.main,
+  backgroundColor: theme.palette.background.default,
+}))
 
-const StyledTag = muiStyled(Button)`
-  color: #FFFFFF;
-  background-color: #7DC69F;
-  
-  :hover {
-    background-color: #4CA752;
-  }
-`
+const StyledTag = styled(Button)({
+  color: '#ffffff',
+  backgroundColor: '#7dc69f',
 
-const StyledCheckbox = muiStyled(Checkbox)`
-  color: #7DC69F;
-`
+  '&:hover': {
+    backgroundColor: '#4ca752',
+  },
+})
+
+const StyledCheckbox = styled(Checkbox)({
+  color: '#7dc69f',
+})
 
 const GroupItems = styled('ul')({
   padding: 0,

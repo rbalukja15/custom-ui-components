@@ -51,12 +51,12 @@ export const CommonTheme = createTheme({
       ...BASE_TYPOGRAPHY.FONT_SIZE_200,
       fontWeight: BASE_TYPOGRAPHY.FONT_WEIGHT_NORMAL,
     },
-    // button: {
-    //   ...BASE_TYPOGRAPHY.FONT_SIZE_300,
-    //   fontWeight: BASE_TYPOGRAPHY.FONT_WEIGHT_NORMAL,
-    //   letterSpacing: 0.5,
-    //   textTransform: 'none',
-    // },
+    button: {
+      ...BASE_TYPOGRAPHY.FONT_SIZE_300,
+      fontWeight: BASE_TYPOGRAPHY.FONT_WEIGHT_NORMAL,
+      letterSpacing: 0.5,
+      textTransform: 'none',
+    },
     caption: {
       ...BASE_TYPOGRAPHY.FONT_SIZE_200,
       fontWeight: BASE_TYPOGRAPHY.FONT_WEIGHT_NORMAL,

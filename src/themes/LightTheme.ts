@@ -24,9 +24,9 @@ export const LightTheme: ThemeOptions = {
     error: {
       main: BASE_COLORS.COLOR_RED_700,
     },
-    // text: {
-    //   primary: BASE_COLORS.COLOR_NEUTRAL_800,
-    // },
+    text: {
+      primary: BASE_COLORS.COLOR_NEUTRAL_800,
+    },
     background: {
       default: BASE_COLORS.COLOR_NEUTRAL_100,
     },

@@ -24,3 +24,4 @@ services:
     read_only: true
     tmpfs:
       - /tmp
+      - /usr/local/share/.cache

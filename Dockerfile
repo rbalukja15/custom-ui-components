@@ -1,19 +1,20 @@
-# Use node image as base
-FROM node:16.14.2
+# install stage
+FROM node:16.14.2 AS install
 
-# Set working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and yarn.lock files
-COPY package.json yarn.lock ./
+COPY package.json package.json
+COPY yarn.lock yarn.lock
 
-# Install dependencies
-RUN yarn install
+RUN yarn install --pure-lockfile
 
-# Copy the rest of the application files
 COPY . .
 
-# Build the application
+# build stage
+FROM install AS build
+
+ENV NODE_ENV=production
+
 RUN yarn build
 
 # Expose the Storybook port

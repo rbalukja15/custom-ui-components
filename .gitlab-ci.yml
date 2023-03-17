@@ -1,0 +1,25 @@
+variables:
+  SERVER: production
+  DEPLOY_DIR: "/etc/foodtracks/$CI_PROJECT_NAME"
+
+build:
+  stage: build
+  tags:
+    - build
+  script:
+    - echo -n "$CI_JOB_TOKEN" | docker login --password-stdin --username $CI_REGISTRY_USER "$CI_REGISTRY"
+    - docker build --pull --build-arg "RIVER_VERSION=$RIVER_VERSION" --build-arg "MATOMO_TOKEN=$MATOMO_TOKEN" -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
+    - "[ $CI_MERGE_REQUEST_ID ] || docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+
+deploy:
+  stage: deploy
+  tags:
+    - ssh
+  script:
+    - ssh "$SERVER" mkdir -p "$DEPLOY_DIR"
+    - scp docker-compose.yml "$SERVER":"$DEPLOY_DIR"/docker-compose.yml
+    - ssh "$SERVER" "echo -n $CI_JOB_TOKEN | sudo docker login --password-stdin --username $CI_REGISTRY_USER $CI_REGISTRY"
+    - ssh "$SERVER" "sudo docker-compose -f $DEPLOY_DIR/docker-compose.yml pull"
+    - ssh "$SERVER" "sudo docker-compose -f $DEPLOY_DIR/docker-compose.yml up -d --force-recreate --remove-orphans"
+  only:
+    - master

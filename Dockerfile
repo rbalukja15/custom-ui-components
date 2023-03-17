@@ -3,6 +3,9 @@ FROM node:16.14.2 AS install
 
 WORKDIR /usr/src/app
 
+# Set YARN_CACHE_FOLDER environment variable
+ENV YARN_CACHE_FOLDER=/usr/src/app/.cache
+
 COPY package.json package.json
 COPY yarn.lock yarn.lock
 

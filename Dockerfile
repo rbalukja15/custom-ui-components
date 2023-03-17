@@ -1,26 +1,21 @@
 # install stage
-FROM node:16.14.2 AS install
+FROM node:16.14.2 AS builder
 
+# Add a work directory
 WORKDIR /usr/src/app
 
-COPY package.json package.json
-COPY yarn.lock yarn.lock
+# Cache and Install dependencies
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-RUN yarn install --frozen-lockfile --no-cache
-
+# Copy app files
 COPY . .
 
-# build stage
-FROM install AS build
+# Build the app
+RUN yarn build-storybook
 
-ENV NODE_ENV=production
-# Set YARN_CACHE_FOLDER environment variable
-ENV YARN_CACHE_FOLDER=/usr/src/app/.cache
+# Bundle static assets with nginx
+FROM nginx:stable-alpine
 
-RUN yarn build
-
-# Expose the Storybook port
-EXPOSE 6006
-
-# Start Storybook server
-CMD ["yarn", "storybook", "-p", "6006", "-s", "build"]
+# Copy built assets from builder
+COPY --from=builder /usr/src/app/storybook-static /usr/share/nginx/html

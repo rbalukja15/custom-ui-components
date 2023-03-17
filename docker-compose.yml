@@ -6,7 +6,7 @@ networks:
 
 services:
   storybook:
-    image: git.foodtracks.de:4567/foodtracks/custom-ui-components .
+    image: git.foodtracks.de:4567/foodtracks/custom-ui-components:master
     networks:
       - foodtracks-main
     labels:

@@ -17,9 +17,5 @@ services:
       - "traefik.http.services.storybook.loadbalancer.server.port=6006"
       - "traefik.http.middlewares.storybookauth.basicauth.users=storybook:$$apr1$$jwq/dQks$$MSjz7LHNfI4etzl3wLYoA0"
     restart: always
-    cap_drop:
-      - ALL
-    security_opt:
-      - no-new-privileges=true
     tmpfs:
       - /tmp

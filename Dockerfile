@@ -17,7 +17,8 @@ ENV NODE_ENV=production
 
 RUN yarn build
 
-# staticfiles stage, final
-FROM scratch
+# Expose the Storybook port
+EXPOSE 6006
 
-COPY --from=build /usr/src/app/public /assets
+# Start Storybook server
+CMD ["yarn", "storybook", "-p", "6006", "-s", "build"]

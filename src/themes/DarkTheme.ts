@@ -93,6 +93,7 @@ export const DarkTheme: ThemeOptions = {
             borderBottom: 'none', // '1px dashed rgb(71, 71, 71)',
           },
           borderBottom: '1px solid #E0E0E0',
+          '&:hover': { backgroundColor: '#FDFBE9' },
         },
       },
     },

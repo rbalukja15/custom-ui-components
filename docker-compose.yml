@@ -1,0 +1,20 @@
+version: "2.4"
+
+networks:
+  foodtracks-main:
+    external: true
+
+services:
+  storybook:
+    image: git.foodtracks.de:4567/foodtracks/custom-ui-components:master
+    networks:
+      - foodtracks-main
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.storybook.rule=Host(`storybook.foodtracks.de`)"
+      - "traefik.http.routers.storybook.middlewares=storybookauth"
+      - "traefik.http.middlewares.storybookauth.basicauth.users=storybook:$$apr1$$jwq/dQks$$MSjz7LHNfI4etzl3wLYoA0"
+    restart: always
+    tmpfs:
+      - /tmp

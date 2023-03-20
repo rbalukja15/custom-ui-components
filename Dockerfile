@@ -1,23 +1,21 @@
 # install stage
-FROM node:16.14.2 AS install
+FROM node:16.14.2 AS builder
 
+# Add a work directory
 WORKDIR /usr/src/app
 
-COPY package.json package.json
-COPY yarn.lock yarn.lock
+# Cache and Install dependencies
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-RUN yarn install --pure-lockfile
-
+# Copy app files
 COPY . .
 
-# build stage
-FROM install AS build
+# Build the app
+RUN yarn build-storybook
 
-ENV NODE_ENV=production
+# Bundle static assets with nginx
+FROM nginx:stable-alpine
 
-RUN yarn build
-
-# staticfiles stage, final
-FROM scratch
-
-COPY --from=build /usr/src/app/public /assets
+# Copy built assets from builder
+COPY --from=builder /usr/src/app/storybook-static /usr/share/nginx/html

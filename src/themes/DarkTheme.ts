@@ -92,7 +92,8 @@ export const DarkTheme: ThemeOptions = {
             // remove border from last entry but MUI adds an empty row after the last filled row, so we remove both borders
             borderBottom: 'none', // '1px dashed rgb(71, 71, 71)',
           },
-          borderBottom: '1px dashed #E0E0E0',
+          borderBottom: '1px solid #E0E0E0',
+          '&:hover': { backgroundColor: '#FDFBE9' },
         },
       },
     },

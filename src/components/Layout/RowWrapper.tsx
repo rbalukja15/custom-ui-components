@@ -9,7 +9,7 @@ export const RowWrapper = styled.div<LayoutProps>`
   flex: 1 1 1;
   flex-direction: column;
 
-  & > *:not(:first-child) {
+  & > *:not(:first-of-type) {
     margin: ${GUTTER.mobile}px 0 0 0;
   }
 
@@ -28,7 +28,7 @@ export const RowWrapper = styled.div<LayoutProps>`
           align-items: flex-start;
           justify-content: ${justifyContent};
 
-          & > *:not(:first-child) {
+          & > *:not(:first-of-type) {
             margin: 0;
           }
 
@@ -50,7 +50,7 @@ export const RowWrapper = styled.div<LayoutProps>`
         return `
           flex-direction: column;
           align-items: ${alignItems};
-          & > *:not(:first-child) {
+          & > *:not(:first-of-type) {
             margin: ${gutter}px 0 0 0;
           }
         `

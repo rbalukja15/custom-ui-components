@@ -26,7 +26,7 @@ function createData(
 }
 
 const rows = [
-  createData(1, 'Cupcake', true, 3.7, 67, true, false, 'amount'),
+  createData(1, 'Cupcakeeeeeeeeeeeeeeeeeeeeeeeeee', true, 3.7, 67, true, false, 'amount'),
   createData(2, 'Cupcake', false, 3.7, 67, true, false, 'amount'),
   createData(3, 'Cupcake', true, 3.7, 67, true, false, 'amount'),
   createData(4, 'Cupcake', true, 3.7, 67, true, false, 'amount'),
@@ -44,44 +44,44 @@ const rows = [
 const headCells: readonly HeadCell[] = [
   {
     id: 'name',
-    numeric: false,
-    disablePadding: true,
+    isNumeric: false,
+    isPaddingDisabled: true,
     label: 'Name',
   },
   {
     id: 'isActive',
-    numeric: false,
-    disablePadding: false,
+    isNumeric: false,
+    isPaddingDisabled: false,
     label: 'Active',
   },
   {
     id: 'upperLimit',
-    numeric: true,
-    disablePadding: false,
+    isNumeric: true,
+    isPaddingDisabled: false,
     label: 'Upper limit',
   },
   {
     id: 'lowerLimit',
-    numeric: true,
-    disablePadding: false,
+    isNumeric: true,
+    isPaddingDisabled: false,
     label: 'Lower limit',
   },
   {
     id: 'flagReturns',
-    numeric: false,
-    disablePadding: false,
+    isNumeric: false,
+    isPaddingDisabled: false,
     label: 'Flag returns',
   },
   {
     id: 'flagSoldOuts',
-    numeric: false,
-    disablePadding: false,
+    isNumeric: false,
+    isPaddingDisabled: false,
     label: 'Flag sold outs',
   },
   {
     id: 'unit',
-    numeric: false,
-    disablePadding: false,
+    isNumeric: false,
+    isPaddingDisabled: false,
     label: 'Unit',
   },
 ]
@@ -91,9 +91,17 @@ const onActionClick = (id: number) => {
 }
 
 const Template: Story<CustomTableDataProps> = args => {
-  const { headCells, rows, title } = args
+  const { headCells, rows, title, isPaginated } = args
 
-  return <CustomTable headCells={headCells} rows={rows} title={title} onActionClick={onActionClick} />
+  return (
+    <CustomTable
+      headCells={headCells}
+      rows={rows}
+      title={title}
+      isPaginated={isPaginated}
+      onActionClick={onActionClick}
+    />
+  )
 }
 
 export const Default = Template.bind({})
@@ -105,7 +113,7 @@ Default.args = {
 }
 
 export default {
-  title: 'Molecules/CustomizedMenus',
+  title: 'Molecules/Table',
   component: CustomTable,
   argTypes: {
     headCells: {

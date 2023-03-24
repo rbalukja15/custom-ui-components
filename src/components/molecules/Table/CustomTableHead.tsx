@@ -12,8 +12,8 @@ export const CustomTableHead = ({ headCells }: CustomTableHeaderProps) => {
         {headCells.map(headCell => (
           <TableCell
             key={headCell.id as string}
-            align={headCell.numeric ? 'right' : 'center'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
+            align={headCell.isNumeric ? 'right' : 'center'}
+            padding={headCell.isPaddingDisabled ? 'none' : 'normal'}
           >
             {headCell.label}
           </TableCell>

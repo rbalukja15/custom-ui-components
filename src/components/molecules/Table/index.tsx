@@ -1,5 +1,5 @@
 import LaunchIcon from '@mui/icons-material/Launch'
-import { IconButton } from '@mui/material'
+import { IconButton, Tooltip, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -14,7 +14,7 @@ import { CustomTableHead } from './CustomTableHead'
 import { TableToolbar } from './ToolBar'
 import { CustomTableDataProps } from './types'
 
-export const CustomTable = ({ headCells, rows, title, onActionClick }: CustomTableDataProps) => {
+export const CustomTable = ({ headCells, rows, title, isPaginated, onActionClick }: CustomTableDataProps) => {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
@@ -38,10 +38,48 @@ export const CustomTable = ({ headCells, rows, title, onActionClick }: CustomTab
     onActionClick && onActionClick(id)
   }
 
+  const defaultRenderer = (item, field) => {
+    if (typeof item[field] === 'undefined') {
+      throw new Error(`Data not found for ${field}`)
+    }
+
+    if (field === 'name') {
+      return (
+        <Tooltip title={item[field]} placement="bottom" id="nameTooltip">
+          <Typography
+            variant="body1"
+            sx={{
+              maxWidth: 200, // percentage also works
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {item[field]}
+          </Typography>
+        </Tooltip>
+      )
+    }
+
+    return (
+      <Typography
+        variant="body1"
+        sx={{
+          maxWidth: 200, // percentage also works
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        {item[field]}
+      </Typography>
+    )
+  }
+
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <TableToolbar numSelected={0} title={title} />
+        {title && <TableToolbar numSelected={0} title={title} />}
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
             <CustomTableHead headCells={headCells} />
@@ -55,8 +93,8 @@ export const CustomTable = ({ headCells, rows, title, onActionClick }: CustomTab
                     {headCells.map((cell, index) => {
                       const isBoolean = typeof row[cell.id] === 'boolean'
                       return (
-                        <TableCell key={`${row.id}-${index}`} align="center">
-                          {isBoolean ? renderBoolean(row[cell.id] as boolean) : row[cell.id]}
+                        <TableCell key={`${row.id}-${index}`} align={cell.isNumeric ? 'right' : 'center'}>
+                          {isBoolean ? renderBoolean(row[cell.id] as boolean) : defaultRenderer(row, cell.id)}
                         </TableCell>
                       )
                     })}
@@ -80,15 +118,18 @@ export const CustomTable = ({ headCells, rows, title, onActionClick }: CustomTab
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        {isPaginated && (
+          <TablePagination
+            id="customPagination"
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        )}
       </Paper>
     </Box>
   )

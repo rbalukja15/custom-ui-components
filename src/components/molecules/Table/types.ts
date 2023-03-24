@@ -15,17 +15,18 @@ export interface EnhancedTableProps {
 }
 
 export interface HeadCell {
-  disablePadding: boolean
-  id: keyof Data
+  id: string
+  isNumeric: boolean
+  isPaddingDisabled: boolean
   label: string
-  numeric: boolean
 }
 
 export interface CustomTableDataProps {
   headCells: HeadCell[]
-  rows: Data[]
-  title: string
-  onActionClick: (id: number) => void
+  rows: any[]
+  title?: string
+  onActionClick?: (id: number) => void
+  isPaginated?: boolean
 }
 
 export interface CustomTableHeaderProps {

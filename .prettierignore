@@ -1,0 +1,16 @@
+# build artifacts
+/build
+/dist
+/public
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+/ci
+
+# misc
+project.yaml
+.gitlab-ci.yml
+*.md

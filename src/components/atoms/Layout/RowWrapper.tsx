@@ -1,60 +1,58 @@
-import styled from 'styled-components'
+import { styled } from '@mui/material/styles'
 
 import { LayoutProps } from './index'
 import { GUTTER } from '../../../utilities/grid'
-import { media } from '../../../utilities/media'
 
-export const RowWrapper = styled.div<LayoutProps>`
-  display: flex;
-  flex: 1 1 1;
-  flex-direction: column;
+export const RowWrapper = styled('div')<LayoutProps>(({ theme }) => ({
+  display: 'flex',
+  flex: '1 1 1',
+  flexDirection: 'column',
 
-  & > *:not(:first-of-type) {
-    margin: ${GUTTER.mobile}px 0 0 0;
-  }
-
-  ${media.tablet`
-    ${({ mode, gutter, alignment }: LayoutProps) => {
-      if (mode === 'grid') {
+  '& > *:not(:first-of-type)': {
+    margin: `${GUTTER.mobile}px 0 0 0`,
+  },
+  [theme.breakpoints.up('md')]: {
+    ...props => {
+      if (props.mode === 'grid') {
         let justifyContent = 'center'
-        if (alignment === 'left') {
+        if (props.alignment === 'left') {
           justifyContent = 'flex-start'
-        } else if (alignment === 'right') {
+        } else if (props.alignment === 'right') {
           justifyContent = 'flex-end'
         }
 
-        return `
-          flex-direction: row;
-          align-items: flex-start;
-          justify-content: ${justifyContent};
+        return {
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          justifyContent: justifyContent,
 
-          & > *:not(:first-of-type) {
-            margin: 0;
-          }
+          '& > *:not(:first-of-type)': {
+            margin: 0,
+          },
 
-          margin-left: -${Number(gutter) / 2}px;
-          margin-right: -${Number(gutter) / 2}px;
+          marginLeft: `-${Number(props.gutter) / 2}px`,
+          marginRight: `-${Number(props.gutter) / 2}px`,
 
-          & > * {
-            padding: 0 ${Number(gutter) / 2}px;
-          }
-        `
+          '& > *': {
+            padding: `0 ${Number(props.gutter) / 2}px`,
+          },
+        }
       } else {
         let alignItems = 'flex-start'
-        if (alignment === 'right') {
+        if (props.alignment === 'right') {
           alignItems = 'flex-end'
-        } else if (alignment === 'center') {
+        } else if (props.alignment === 'center') {
           alignItems = 'center'
         }
 
-        return `
-          flex-direction: column;
-          align-items: ${alignItems};
-          & > *:not(:first-of-type) {
-            margin: ${gutter}px 0 0 0;
-          }
-        `
+        return {
+          flexDirection: 'column',
+          alignItems: alignItems,
+          '& > *:not(:first-of-type)': {
+            margin: `${props.gutter}px 0 0 0`,
+          },
+        }
       }
-    }}
-  `};
-`
+    },
+  },
+}))

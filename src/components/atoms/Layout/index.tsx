@@ -1,12 +1,13 @@
+import { styled } from '@mui/material/styles'
 import * as React from 'react'
-import styled from 'styled-components'
 
 import { RowWrapper } from './RowWrapper'
 import { GUTTER, gridWidth } from '../../../utilities/grid'
 import { media } from '../../../utilities/media'
 
-const LayoutDiv = styled.div`
+const LayoutDiv = styled('div')`
   width: 100%;
+  background: ${({ theme }) => theme.palette.background.default};
   ${media.tablet`
     ${({ paddingTop }) => (paddingTop ? `padding-top:${parseInt(paddingTop)}px;` : '')}
     max-width: ${({ width }) => gridWidth['tablet'](parseInt(width))}px;

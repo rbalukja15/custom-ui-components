@@ -1,4 +1,4 @@
-import { css, InterpolationValue } from 'styled-components'
+import { css } from '@mui/material/styles'
 
 export const sizes = {
   hd: 1200,
@@ -11,7 +11,7 @@ export const sizes = {
 export const screenSizes = label => `${sizes[label] / 16}em`
 
 type GeneratedTemplates<T> = {
-  [P in keyof T]: (strings: any, ...interpolations: any[]) => InterpolationValue[]
+  [P in keyof T]: (strings: any, ...interpolations: any[]) => any[]
 }
 const generateTemplates = <T extends object>(source: T): GeneratedTemplates<T> =>
   Object.keys(source).reduce((result, label) => {

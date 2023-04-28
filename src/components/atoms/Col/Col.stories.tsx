@@ -15,7 +15,7 @@ const Template: Story<ColStoryProps> = args => {
   const { numberOfCols = 4, ...rest } = args
 
   return (
-    <Container style={{ border: '1px solid gray', height: '200px' }} background="opaque">
+    <Container background="opaque">
       <Layout mode="grid" width="12">
         {new Array(numberOfCols).fill(0).map((_, idx) => (
           <Col key={idx} {...rest}>

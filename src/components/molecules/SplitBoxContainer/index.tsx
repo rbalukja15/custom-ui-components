@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles'
 import * as React from 'react'
 
-import { Col } from '../../Col'
-import { Layout } from '../../Layout'
+import { Col } from '../../atoms/Col'
+import { Layout } from '../../atoms/Layout'
 
 type SplitBoxContainerProps = {
   children?: React.ReactElement | React.ReactElement[]

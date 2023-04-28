@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { COLUMN_WIDTH_RELATIVE } from '../../utilities/grid'
-import { media } from '../../utilities/media'
+import { COLUMN_WIDTH_RELATIVE } from '../../../utilities/grid'
+import { media } from '../../../utilities/media'
 
 const StyledColumn = styled.div`
   width: 100%;

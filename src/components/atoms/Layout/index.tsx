@@ -2,8 +2,8 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { RowWrapper } from './RowWrapper'
-import { GUTTER, gridWidth } from '../../utilities/grid'
-import { media } from '../../utilities/media'
+import { GUTTER, gridWidth } from '../../../utilities/grid'
+import { media } from '../../../utilities/media'
 
 const LayoutDiv = styled.div`
   width: 100%;

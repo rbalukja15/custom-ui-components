@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 import { LayoutProps } from './index'
-import { GUTTER } from '../../utilities/grid'
-import { media } from '../../utilities/media'
+import { GUTTER } from '../../../utilities/grid'
+import { media } from '../../../utilities/media'
 
 export const RowWrapper = styled.div<LayoutProps>`
   display: flex;

@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "outDir": "./build/es",
+    "outDir": "./build/cjs",
     "module": "es6"
   }
 }

@@ -6,9 +6,10 @@ A library with custom ui components
 2. yarn run build
 3. yarn run storybook
 
-# How do the test work
-### We should consider that when we want to test the component and the children, there are 3 method used from enzyme:
-1. Always begin with shallow
-2. If componentDidMount or componentDidUpdate should be tested, use mount
-3. If you want to test component lifecycle and children behavior, use mount
-4. If you want to test children rendering with less overhead than mount and you are not interested in lifecycle methods, use render
+## [Here you can check out how the library works](documentation/architecture.md)
+
+## Steps to deploy the library
+1. yarn run build
+2. make sure you update the `.npmrc` file with the correct registry and token
+3. run in the terminal this command `yarn --registry=https://git.foodtracks.de/api/v4/projects/39/packages/npm/ add @foodtracks/custom-ui-components`
+4. check the versioning in the `package.json` file and in [project registry](https://git.foodtracks.de/foodtracks/cockpit/-/packages)

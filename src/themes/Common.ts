@@ -3,6 +3,15 @@ import { createTheme } from '@mui/material/styles'
 import { BASE_TYPOGRAPHY } from './BaseFonts'
 
 export const CommonTheme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 360,
+      sm: 576,
+      md: 992,
+      lg: 1200,
+      xl: 1920,
+    },
+  },
   typography: {
     htmlFontSize: 16,
     fontFamily: BASE_TYPOGRAPHY.FONT_FAMILY,

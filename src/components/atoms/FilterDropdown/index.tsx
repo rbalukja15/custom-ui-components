@@ -11,9 +11,9 @@ import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import * as React from 'react'
 
-import usePrevious from '../../usePrevious'
+import usePrevious from '../../../usePrevious'
+import { SplitBoxContainer } from '../../molecules/SplitBoxContainer'
 import { Store } from '../Autocomplete/types'
-import { SplitBoxContainer } from '../molecules/SplitBoxContainer'
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu

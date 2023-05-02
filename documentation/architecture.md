@@ -26,7 +26,7 @@
 
 ## src folder
    ### The src folder contains the components and the stories
-   ### [Thi workflow is the Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
+   ### [This workflow is the Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
 
    - `components` folder where the components are
    - `index.ts` file where we export the components, themes and other stuff that can be imported in other projects

@@ -1,16 +1,15 @@
+import { styled } from '@mui/material/styles'
 import * as React from 'react'
-import styled from 'styled-components'
 
-import { COLUMN_WIDTH_RELATIVE } from '../../utilities/grid'
-import { media } from '../../utilities/media'
+import { COLUMN_WIDTH_RELATIVE } from '../../../utilities/grid'
 
-const StyledColumn = styled.div`
-  width: 100%;
+const StyledColumn = styled('div')(({ theme }) => ({
+  width: '100%',
 
-  ${media.tablet`
-    width: ${({ width }) => width * COLUMN_WIDTH_RELATIVE}%;
-  `};
-`
+  [theme.breakpoints.down('md')]: {
+    width: ({ width }) => `${width * COLUMN_WIDTH_RELATIVE}%`,
+  },
+}))
 
 export interface ColProps {
   /**The column should have contents*/

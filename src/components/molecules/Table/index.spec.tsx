@@ -1,9 +1,9 @@
-import { mount, render } from 'enzyme'
 import { ThemeProvider } from '@mui/material/styles'
+import { mount, render } from 'enzyme'
 
+import { CustomTable } from './index'
 import { Themes } from '../../../themes'
 import { ErrorBoundary } from '../../../utilities/ErrorBoundary'
-import { CustomTable } from './index'
 
 const rows = [
   {

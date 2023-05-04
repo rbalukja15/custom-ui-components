@@ -1,6 +1,6 @@
 {
   "name": "@foodtracks/custom-ui-components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Custom UI components",
   "main": "build/cjs/src/index.js",
   "repository": "https://github.com/rbalukja15/custom-ui-components.git",

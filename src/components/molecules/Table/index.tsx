@@ -12,9 +12,16 @@ import * as React from 'react'
 
 import { CustomTableHead } from './CustomTableHead'
 import { TableToolbar } from './ToolBar'
-import { CustomTableDataProps } from './types'
+import { CustomTableDataProps, TableBoolean } from './types'
 
-export const CustomTable = ({ headCells, rows, title, isPaginated, onActionClick }: CustomTableDataProps) => {
+export const CustomTable = ({
+  headCells,
+  rows,
+  title,
+  isPaginated,
+  headerActionComponent,
+  onActionClick,
+}: CustomTableDataProps) => {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
@@ -31,7 +38,7 @@ export const CustomTable = ({ headCells, rows, title, isPaginated, onActionClick
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
   const renderBoolean = (value: boolean): string => {
-    return value ? 'TRUE' : 'FALSE'
+    return value ? TableBoolean.TRUE : TableBoolean.FALSE
   }
 
   const handleOnClick = (id: number) => {
@@ -79,7 +86,10 @@ export const CustomTable = ({ headCells, rows, title, isPaginated, onActionClick
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        {title && <TableToolbar numSelected={0} title={title} />}
+        <Box sx={{ display: 'flex' }}>
+          <Box sx={{ flexGrow: 1 }}>{title && <TableToolbar numSelected={0} title={title} />}</Box>
+          <Box sx={{ p: 2 }}>{headerActionComponent}</Box>
+        </Box>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>
             <CustomTableHead headCells={headCells} />

@@ -1,3 +1,5 @@
+import AddIcon from '@mui/icons-material/Add'
+import { Button } from '@mui/material'
 import { Story } from '@storybook/react'
 
 import { CustomTable } from './index'
@@ -93,12 +95,19 @@ const onActionClick = (id: number) => {
 const Template: Story<CustomTableDataProps> = args => {
   const { headCells, rows, title, isPaginated } = args
 
+  const headerAction = (
+    <Button variant="contained" startIcon={<AddIcon />} onClick={() => alert('Action Clicked')}>
+      Add
+    </Button>
+  )
+
   return (
     <CustomTable
       headCells={headCells}
       rows={rows}
       title={title}
       isPaginated={isPaginated}
+      headerActionComponent={headerAction}
       onActionClick={onActionClick}
     />
   )

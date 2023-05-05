@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 export interface Data {
   id: number
   name: string
@@ -25,10 +27,16 @@ export interface CustomTableDataProps {
   headCells: HeadCell[]
   rows: any[]
   title?: string
+  headerActionComponent?: React.ReactNode
   onActionClick?: (id: number) => void
   isPaginated?: boolean
 }
 
 export interface CustomTableHeaderProps {
   headCells: HeadCell[]
+}
+
+export enum TableBoolean {
+  TRUE = 'TRUE',
+  FALSE = 'FALSE',
 }

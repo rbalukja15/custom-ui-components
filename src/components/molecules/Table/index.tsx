@@ -88,7 +88,11 @@ export const CustomTable = ({
       <Paper sx={{ width: '100%', mb: 2 }}>
         <Box sx={{ display: 'flex' }}>
           <Box sx={{ flexGrow: 1 }}>{title && <TableToolbar numSelected={0} title={title} />}</Box>
-          <Box sx={{ p: 2 }}>{headerActionComponent}</Box>
+          {headerActionComponent && (
+            <Box sx={{ p: 2 }} data-testid={'custom-header-action'}>
+              {headerActionComponent}
+            </Box>
+          )}
         </Box>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'medium'}>

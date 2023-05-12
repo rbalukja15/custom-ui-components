@@ -1,4 +1,6 @@
+import { Button } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
+import { render as rtlRender } from '@testing-library/react'
 import { mount, render } from 'enzyme'
 
 import { CustomTable } from './index'
@@ -18,55 +20,64 @@ const rows = [
   },
 ]
 
-describe('CustomTable', () => {
+const headCells = [
+  {
+    id: 'name',
+    isNumeric: false,
+    isPaddingDisabled: true,
+    label: 'Name',
+  },
+  {
+    id: 'isActive',
+    isNumeric: false,
+    isPaddingDisabled: false,
+    label: 'Active',
+  },
+  {
+    id: 'upperLimit',
+    isNumeric: true,
+    isPaddingDisabled: false,
+    label: 'Upper limit',
+  },
+  {
+    id: 'lowerLimit',
+    isNumeric: true,
+    isPaddingDisabled: false,
+    label: 'Lower limit',
+  },
+  {
+    id: 'flagReturns',
+    isNumeric: false,
+    isPaddingDisabled: false,
+    label: 'Flag returns',
+  },
+  {
+    id: 'flagSoldOuts',
+    isNumeric: false,
+    isPaddingDisabled: false,
+    label: 'Flag sold outs',
+  },
+  {
+    id: 'unit',
+    isNumeric: false,
+    isPaddingDisabled: false,
+    label: 'Unit',
+  },
+]
+
+describe('Test CustomTable', () => {
   beforeAll(() => {})
 
   it('should fail if any field is not available in the data', () => {
-    const headCells = [
-      {
-        id: 'name',
-        isNumeric: false,
-        isPaddingDisabled: true,
-        label: 'Name',
-      },
-      {
-        id: 'isActive',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Active',
-      },
+    const erroredCells = [
+      ...headCells,
       {
         id: 'test',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Upper limit',
-      },
-      {
-        id: 'lowerLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Lower limit',
-      },
-      {
-        id: 'flagReturns',
         isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag returns',
-      },
-      {
-        id: 'flagSoldOuts',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag sold outs',
-      },
-      {
-        id: 'unit',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Unit',
+        isPaddingDisabled: true,
+        label: 'Test',
       },
     ]
-
     //Reduce error polution in the terminal
     const disabledConsoleError = console.error
     console.error = msg => {}
@@ -74,7 +85,7 @@ describe('CustomTable', () => {
     const element = mount(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable headCells={headCells} rows={rows} title="Rules" onActionClick={() => console.log('click')} />
+          <CustomTable headCells={erroredCells} rows={rows} title="Rules" onActionClick={() => console.log('click')} />
         </ErrorBoundary>
       </ThemeProvider>
     )
@@ -84,51 +95,6 @@ describe('CustomTable', () => {
   })
 
   it('should display title toolbar when title is passed as prop', () => {
-    const headCells = [
-      {
-        id: 'name',
-        isNumeric: false,
-        isPaddingDisabled: true,
-        label: 'Name',
-      },
-      {
-        id: 'isActive',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Active',
-      },
-      {
-        id: 'upperLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Upper limit',
-      },
-      {
-        id: 'lowerLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Lower limit',
-      },
-      {
-        id: 'flagReturns',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag returns',
-      },
-      {
-        id: 'flagSoldOuts',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag sold outs',
-      },
-      {
-        id: 'unit',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Unit',
-      },
-    ]
-
     //Reduce error polution in the terminal
     const disabledConsoleError = console.error
     console.error = msg => {}
@@ -147,51 +113,6 @@ describe('CustomTable', () => {
   })
 
   it('should not display title toolbar when title is not passed as prop', () => {
-    const headCells = [
-      {
-        id: 'name',
-        isNumeric: false,
-        isPaddingDisabled: true,
-        label: 'Name',
-      },
-      {
-        id: 'isActive',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Active',
-      },
-      {
-        id: 'upperLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Upper limit',
-      },
-      {
-        id: 'lowerLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Lower limit',
-      },
-      {
-        id: 'flagReturns',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag returns',
-      },
-      {
-        id: 'flagSoldOuts',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag sold outs',
-      },
-      {
-        id: 'unit',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Unit',
-      },
-    ]
-
     // Reduce error pollution in the terminal
     const disabledConsoleError = console.error
     console.error = msg => {}
@@ -209,51 +130,6 @@ describe('CustomTable', () => {
   })
 
   it('should not render pagination when `isPaginated` is `false or undefined`', () => {
-    const headCells = [
-      {
-        id: 'name',
-        isNumeric: false,
-        isPaddingDisabled: true,
-        label: 'Name',
-      },
-      {
-        id: 'isActive',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Active',
-      },
-      {
-        id: 'upperLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Upper limit',
-      },
-      {
-        id: 'lowerLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Lower limit',
-      },
-      {
-        id: 'flagReturns',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag returns',
-      },
-      {
-        id: 'flagSoldOuts',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag sold outs',
-      },
-      {
-        id: 'unit',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Unit',
-      },
-    ]
-
     // Reduce error pollution in the terminal
     const disabledConsoleError = console.error
     console.error = msg => {}
@@ -271,51 +147,6 @@ describe('CustomTable', () => {
   })
 
   it('should render pagination when `isPaginated` is `true`', () => {
-    const headCells = [
-      {
-        id: 'name',
-        isNumeric: false,
-        isPaddingDisabled: true,
-        label: 'Name',
-      },
-      {
-        id: 'isActive',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Active',
-      },
-      {
-        id: 'upperLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Upper limit',
-      },
-      {
-        id: 'lowerLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Lower limit',
-      },
-      {
-        id: 'flagReturns',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag returns',
-      },
-      {
-        id: 'flagSoldOuts',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag sold outs',
-      },
-      {
-        id: 'unit',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Unit',
-      },
-    ]
-
     // Reduce error pollution in the terminal
     const disabledConsoleError = console.error
     console.error = msg => {}
@@ -333,51 +164,6 @@ describe('CustomTable', () => {
   })
 
   it("should render a tooltip for column 'name'", () => {
-    const headCells = [
-      {
-        id: 'name',
-        isNumeric: false,
-        isPaddingDisabled: true,
-        label: 'Name',
-      },
-      {
-        id: 'isActive',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Active',
-      },
-      {
-        id: 'upperLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Upper limit',
-      },
-      {
-        id: 'lowerLimit',
-        isNumeric: true,
-        isPaddingDisabled: false,
-        label: 'Lower limit',
-      },
-      {
-        id: 'flagReturns',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag returns',
-      },
-      {
-        id: 'flagSoldOuts',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Flag sold outs',
-      },
-      {
-        id: 'unit',
-        isNumeric: false,
-        isPaddingDisabled: false,
-        label: 'Unit',
-      },
-    ]
-
     // Reduce error pollution in the terminal
     const disabledConsoleError = console.error
     console.error = msg => {}
@@ -390,6 +176,51 @@ describe('CustomTable', () => {
       </ThemeProvider>
     )
     expect(element.find('[data-mui-internal-clone-element="true"]').first().prop('aria-label')).toBe('Cupcake')
+    // Restore console error
+    console.error = disabledConsoleError
+  })
+
+  // Test for the action button
+  it('should render an action button', () => {
+    // Reduce error pollution in the terminal
+    const disabledConsoleError = console.error
+    console.error = msg => {}
+
+    const { getByTestId } = rtlRender(
+      <ThemeProvider theme={Themes.lightTheme}>
+        <ErrorBoundary>
+          <CustomTable
+            headCells={headCells}
+            rows={rows}
+            isPaginated
+            headerActionComponent={<Button />}
+            onActionClick={() => console.log('click')}
+          />
+        </ErrorBoundary>
+      </ThemeProvider>
+    )
+    const headerAction = getByTestId('custom-header-action')
+    expect(headerAction).not.toBeNull()
+    // Restore console error
+    console.error = disabledConsoleError
+  })
+
+  // Test for the action button to not be shown
+  it('should not render an action button', () => {
+    // Reduce error pollution in the terminal
+    const disabledConsoleError = console.error
+    console.error = msg => {}
+
+    const { getByTestId } = rtlRender(
+      <ThemeProvider theme={Themes.lightTheme}>
+        <ErrorBoundary>
+          <CustomTable headCells={headCells} rows={rows} isPaginated onActionClick={() => console.log('click')} />
+        </ErrorBoundary>
+      </ThemeProvider>
+    )
+    expect(() => getByTestId('custom-header-action')).toThrow(
+      'Unable to find an element by: [data-testid="custom-header-action"]'
+    )
     // Restore console error
     console.error = disabledConsoleError
   })

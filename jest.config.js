@@ -14,7 +14,7 @@ module.exports = {
       '<rootDir>/test/__mocks__/fileMock.ts',
     '\\.(css)$': 'identity-obj-proxy',
   },
-  setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+  setupFilesAfterEnv: ['<rootDir>test/setup.ts'],
   setupFiles: [],
   transform: {
     '^.+\\.js?$': 'babel-jest',

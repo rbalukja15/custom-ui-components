@@ -21,7 +21,7 @@
     "storybook": "start-storybook -p 6006 -s build",
     "ts:watch": "concurrently \"yarn run build:esm -- -w\" \"yarn run build:cjs -- -w\"",
     "watch": "yarn run ts:watch",
-    "test:ci": "npm run build:svg && CI=true TZ=UTC jest --no-cache",
+    "test:ci": "yarn run jest --no-cache",
     "test": "TZ=UTC jest --watch"
   },
   "dependencies": {
@@ -50,6 +50,7 @@
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.16",
+    "@testing-library/react": "12.1.2",
     "@tsconfig/recommended": "^1.0.2",
     "@types/enzyme": "^3.10.12",
     "@types/jest": "^29.5.0",

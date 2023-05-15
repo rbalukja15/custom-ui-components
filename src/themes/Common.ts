@@ -85,7 +85,7 @@ export const CommonTheme = createTheme({
 
           '& .MuiButtonBase-root': { paddingTop: '0', paddingBottom: '0' },
         },
-        body: { border: 0 },
+        body: { border: 0, padding: 2 },
         footer: { fontSize: '16px', lineHeight: '22px', border: 0 },
       },
     },

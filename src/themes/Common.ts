@@ -76,6 +76,7 @@ export const CommonTheme = createTheme({
     MuiButton: { styleOverrides: { startIcon: { marginRight: '3px' }, endIcon: { marginLeft: '3px' } } },
     MuiButtonBase: { styleOverrides: { root: { padding: '12px 16px' } } },
     MuiLink: { styleOverrides: { root: { textDecoration: 'none' } } },
+    MuiTablePagination: { styleOverrides: { selectLabel: { margin: 'auto' } } },
     MuiTableCell: {
       styleOverrides: {
         head: {
@@ -85,7 +86,7 @@ export const CommonTheme = createTheme({
 
           '& .MuiButtonBase-root': { paddingTop: '0', paddingBottom: '0' },
         },
-        body: { border: 0 },
+        body: { border: 0, padding: 2 },
         footer: { fontSize: '16px', lineHeight: '22px', border: 0 },
       },
     },

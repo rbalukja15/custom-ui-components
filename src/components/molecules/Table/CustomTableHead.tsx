@@ -14,11 +14,12 @@ export const CustomTableHead = ({ headCells }: CustomTableHeaderProps) => {
             key={headCell.id as string}
             align={headCell.isNumeric ? 'right' : 'center'}
             padding={headCell.isPaddingDisabled ? 'none' : 'normal'}
+            colSpan={headCell.id === 'name' ? 2 : 1}
           >
             {headCell.label}
           </TableCell>
         ))}
-        <TableCell align="center">Action</TableCell>
+        <TableCell align="center" />
       </TableRow>
     </TableHead>
   )

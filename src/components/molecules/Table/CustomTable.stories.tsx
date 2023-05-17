@@ -1,5 +1,7 @@
 import AddIcon from '@mui/icons-material/Add'
-import { Button } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
+import LaunchIcon from '@mui/icons-material/Launch'
+import { Button, IconButton } from '@mui/material'
 import { Story } from '@storybook/react'
 
 import { CustomTable } from './index'
@@ -101,6 +103,15 @@ const Template: Story<CustomTableDataProps> = args => {
     </Button>
   )
 
+  const actions = [
+    <IconButton key={0} aria-label="view item" color="primary" onClick={() => onActionClick(0)}>
+      <DeleteIcon />
+    </IconButton>,
+    <IconButton key={1} aria-label="view item" color="primary" onClick={() => onActionClick(1)}>
+      <LaunchIcon />
+    </IconButton>,
+  ]
+
   return (
     <CustomTable
       headCells={headCells}
@@ -108,7 +119,7 @@ const Template: Story<CustomTableDataProps> = args => {
       title={title}
       isPaginated={isPaginated}
       headerActionComponent={headerAction}
-      onActionClick={onActionClick}
+      actions={actions}
     />
   )
 }

@@ -28,8 +28,8 @@ export interface CustomTableDataProps {
   rows: any[]
   title?: string
   headerActionComponent?: React.ReactNode
-  onActionClick?: (id: number) => void
   isPaginated?: boolean
+  actions?: React.ReactNode[]
 }
 
 export interface CustomTableHeaderProps {

@@ -1,5 +1,4 @@
-import LaunchIcon from '@mui/icons-material/Launch'
-import { IconButton, Tooltip, Typography } from '@mui/material'
+import { Tooltip, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -20,10 +19,10 @@ export const CustomTable = ({
   title,
   isPaginated,
   headerActionComponent,
-  onActionClick,
+  actions,
 }: CustomTableDataProps) => {
   const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(5)
+  const [rowsPerPage, setRowsPerPage] = React.useState(30)
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
@@ -41,10 +40,6 @@ export const CustomTable = ({
     return value ? TableBoolean.TRUE : TableBoolean.FALSE
   }
 
-  const handleOnClick = (id: number) => {
-    onActionClick && onActionClick(id)
-  }
-
   const defaultRenderer = (item, field) => {
     if (typeof item[field] === 'undefined') {
       throw new Error(`Data not found for ${field}`)
@@ -56,7 +51,7 @@ export const CustomTable = ({
           <Typography
             variant="body1"
             sx={{
-              maxWidth: 200, // percentage also works
+              maxWidth: '80%', // percentage also works
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -107,16 +102,16 @@ export const CustomTable = ({
                     {headCells.map((cell, index) => {
                       const isBoolean = typeof row[cell.id] === 'boolean'
                       return (
-                        <TableCell key={`${row.id}-${index}`} align={cell.isNumeric ? 'right' : 'center'}>
+                        <TableCell
+                          key={`${row.id}-${index}`}
+                          align={cell.isNumeric ? 'right' : 'center'}
+                          colSpan={cell.id === 'name' ? 2 : 1}
+                        >
                           {isBoolean ? renderBoolean(row[cell.id] as boolean) : defaultRenderer(row, cell.id)}
                         </TableCell>
                       )
                     })}
-                    <TableCell align="center">
-                      <IconButton aria-label="view item" color="primary" onClick={() => handleOnClick(row.id)}>
-                        <LaunchIcon />
-                      </IconButton>
-                    </TableCell>
+                    <TableCell align="center">{actions && actions.map(action => action)}</TableCell>
                   </TableRow>
                 )
               })}
@@ -135,7 +130,7 @@ export const CustomTable = ({
         {isPaginated && (
           <TablePagination
             id="customPagination"
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[30, 50, 100]}
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}

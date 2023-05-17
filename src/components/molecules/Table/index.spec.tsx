@@ -85,7 +85,7 @@ describe('Test CustomTable', () => {
     const element = mount(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable headCells={erroredCells} rows={rows} title="Rules" onActionClick={() => console.log('click')} />
+          <CustomTable headCells={erroredCells} rows={rows} title="Rules" />
         </ErrorBoundary>
       </ThemeProvider>
     )
@@ -102,7 +102,7 @@ describe('Test CustomTable', () => {
     const element = render(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable headCells={headCells} rows={rows} title="Rules" onActionClick={() => console.log('click')} />
+          <CustomTable headCells={headCells} rows={rows} title="Rules" />
         </ErrorBoundary>
       </ThemeProvider>
     )
@@ -120,7 +120,7 @@ describe('Test CustomTable', () => {
     const element = render(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable headCells={headCells} rows={rows} onActionClick={() => console.log('click')} />
+          <CustomTable headCells={headCells} rows={rows} />
         </ErrorBoundary>
       </ThemeProvider>
     )
@@ -137,7 +137,7 @@ describe('Test CustomTable', () => {
     const element = render(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable headCells={headCells} rows={rows} onActionClick={() => console.log('click')} />
+          <CustomTable headCells={headCells} rows={rows} />
         </ErrorBoundary>
       </ThemeProvider>
     )
@@ -154,7 +154,7 @@ describe('Test CustomTable', () => {
     const element = render(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable headCells={headCells} rows={rows} isPaginated onActionClick={() => console.log('click')} />
+          <CustomTable headCells={headCells} rows={rows} isPaginated />
         </ErrorBoundary>
       </ThemeProvider>
     )
@@ -171,7 +171,7 @@ describe('Test CustomTable', () => {
     const element = render(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable headCells={headCells} rows={rows} isPaginated onActionClick={() => console.log('click')} />
+          <CustomTable headCells={headCells} rows={rows} isPaginated />
         </ErrorBoundary>
       </ThemeProvider>
     )
@@ -189,13 +189,7 @@ describe('Test CustomTable', () => {
     const { getByTestId } = rtlRender(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable
-            headCells={headCells}
-            rows={rows}
-            isPaginated
-            headerActionComponent={<Button />}
-            onActionClick={() => console.log('click')}
-          />
+          <CustomTable headCells={headCells} rows={rows} isPaginated headerActionComponent={<Button />} />
         </ErrorBoundary>
       </ThemeProvider>
     )
@@ -214,7 +208,7 @@ describe('Test CustomTable', () => {
     const { getByTestId } = rtlRender(
       <ThemeProvider theme={Themes.lightTheme}>
         <ErrorBoundary>
-          <CustomTable headCells={headCells} rows={rows} isPaginated onActionClick={() => console.log('click')} />
+          <CustomTable headCells={headCells} rows={rows} isPaginated />
         </ErrorBoundary>
       </ThemeProvider>
     )

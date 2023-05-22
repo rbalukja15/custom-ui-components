@@ -1,4 +1,6 @@
-import { Tooltip, Typography } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
+import LaunchIcon from '@mui/icons-material/Launch'
+import { IconButton, Tooltip, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -19,7 +21,8 @@ export const CustomTable = ({
   title,
   isPaginated,
   headerActionComponent,
-  actions,
+  onDeleteActionClick,
+  onEditActionClick,
 }: CustomTableDataProps) => {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(30)
@@ -111,7 +114,30 @@ export const CustomTable = ({
                         </TableCell>
                       )
                     })}
-                    <TableCell align="center">{actions && actions.map(action => action)}</TableCell>
+                    <TableCell align="center">
+                      {onDeleteActionClick && (
+                        <IconButton
+                          key={`${row.id}-delete`}
+                          data-testid={'delete-action'}
+                          aria-label="view item"
+                          color="primary"
+                          onClick={() => onDeleteActionClick(row.id)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      )}
+                      {onEditActionClick && (
+                        <IconButton
+                          key={`${row.id}-edit`}
+                          data-testid={'edit-action'}
+                          aria-label="view item"
+                          color="primary"
+                          onClick={() => onEditActionClick(row.id)}
+                        >
+                          <LaunchIcon />
+                        </IconButton>
+                      )}
+                    </TableCell>
                   </TableRow>
                 )
               })}

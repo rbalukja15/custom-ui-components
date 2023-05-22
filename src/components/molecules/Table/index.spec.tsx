@@ -218,4 +218,76 @@ describe('Test CustomTable', () => {
     // Restore console error
     console.error = disabledConsoleError
   })
+
+  // Test for the icon button with data-testid = 'delete-action' to not be shown if prop onDeleteActionClick is not passed
+  it('should not render an icon button with data-testid = "delete-action" if prop onDeleteActionClick is not passed', () => {
+    // Reduce error pollution in the terminal
+    const disabledConsoleError = console.error
+    console.error = msg => {}
+
+    const { getByTestId } = rtlRender(
+      <ThemeProvider theme={Themes.lightTheme}>
+        <ErrorBoundary>
+          <CustomTable headCells={headCells} rows={rows} isPaginated />
+        </ErrorBoundary>
+      </ThemeProvider>
+    )
+    expect(() => getByTestId('delete-action')).toThrow('Unable to find an element by: [data-testid="delete-action"]')
+    // Restore console error
+    console.error = disabledConsoleError
+  })
+
+  // Test for the icon button with data-testid = 'delete-action' to be shown if prop onDeleteActionClick is passed
+  it('should render an icon button with data-testid = "delete-action" if prop onDeleteActionClick is passed', () => {
+    // Reduce error pollution in the terminal
+    const disabledConsoleError = console.error
+    console.error = msg => {}
+
+    const { getByTestId } = rtlRender(
+      <ThemeProvider theme={Themes.lightTheme}>
+        <ErrorBoundary>
+          <CustomTable headCells={headCells} rows={rows} isPaginated onDeleteActionClick={() => {}} />
+        </ErrorBoundary>
+      </ThemeProvider>
+    )
+    expect(getByTestId('delete-action')).not.toBeNull()
+    // Restore console error
+    console.error = disabledConsoleError
+  })
+
+  // Test for the icon button with data-testid = 'edit-action' to not be shown if prop onEditActionClick is not passed
+  it('should not render an icon button with data-testid = "edit-action" if prop onEditActionClick is not passed', () => {
+    // Reduce error pollution in the terminal
+    const disabledConsoleError = console.error
+    console.error = msg => {}
+
+    const { getByTestId } = rtlRender(
+      <ThemeProvider theme={Themes.lightTheme}>
+        <ErrorBoundary>
+          <CustomTable headCells={headCells} rows={rows} isPaginated />
+        </ErrorBoundary>
+      </ThemeProvider>
+    )
+    expect(() => getByTestId('edit-action')).toThrow('Unable to find an element by: [data-testid="edit-action"]')
+    // Restore console error
+    console.error = disabledConsoleError
+  })
+
+  // Test for the icon button with data-testid = 'edit-action' to be shown if prop onEditActionClick is passed
+  it('should render an icon button with data-testid = "edit-action" if prop onEditActionClick is passed', () => {
+    // Reduce error pollution in the terminal
+    const disabledConsoleError = console.error
+    console.error = msg => {}
+
+    const { getByTestId } = rtlRender(
+      <ThemeProvider theme={Themes.lightTheme}>
+        <ErrorBoundary>
+          <CustomTable headCells={headCells} rows={rows} isPaginated onEditActionClick={() => {}} />
+        </ErrorBoundary>
+      </ThemeProvider>
+    )
+    expect(getByTestId('edit-action')).not.toBeNull()
+    // Restore console error
+    console.error = disabledConsoleError
+  })
 })

@@ -30,6 +30,8 @@ export interface CustomTableDataProps {
   headerActionComponent?: React.ReactNode
   isPaginated?: boolean
   actions?: React.ReactNode[]
+  onDeleteActionClick?: (id: number) => void
+  onEditActionClick?: (id: number) => void
 }
 
 export interface CustomTableHeaderProps {

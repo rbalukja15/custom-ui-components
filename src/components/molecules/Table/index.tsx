@@ -118,6 +118,7 @@ export const CustomTable = ({
                       {onDeleteActionClick && (
                         <IconButton
                           key={`${row.id}-delete`}
+                          data-testid={'delete-action'}
                           aria-label="view item"
                           color="primary"
                           onClick={() => onDeleteActionClick(row.id)}
@@ -128,6 +129,7 @@ export const CustomTable = ({
                       {onEditActionClick && (
                         <IconButton
                           key={`${row.id}-edit`}
+                          data-testid={'edit-action'}
                           aria-label="view item"
                           color="primary"
                           onClick={() => onEditActionClick(row.id)}

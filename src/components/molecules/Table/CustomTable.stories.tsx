@@ -120,6 +120,8 @@ const Template: Story<CustomTableDataProps> = args => {
       isPaginated={isPaginated}
       headerActionComponent={headerAction}
       actions={actions}
+      onDeleteActionClick={onActionClick}
+      onEditActionClick={onActionClick}
     />
   )
 }

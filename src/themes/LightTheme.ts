@@ -63,7 +63,11 @@ export const LightTheme: ThemeOptions = {
     '0 2px 16px 0 rgba(53, 64, 82, 0.1)',
   ],
   components: {
-    MuiTablePagination: { styleOverrides: { select: { background: '#FDFBE9', fontSize: '16px', lineHeight: '24px' } } },
+    MuiTablePagination: {
+      styleOverrides: {
+        select: { background: '#FDFBE9', fontSize: '16px', lineHeight: '24px' },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         outlined: { borderColor: '#F0D721' },
@@ -72,7 +76,6 @@ export const LightTheme: ThemeOptions = {
           color: '#252424',
           borderColor: '#F0D721',
           backgroundColor: '#FFF',
-
           '&:hover, &:focus': { borderColor: '#F0D721', backgroundColor: '#FDFBE9' },
         },
       },

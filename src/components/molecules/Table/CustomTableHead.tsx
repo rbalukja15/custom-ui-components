@@ -13,7 +13,7 @@ export const CustomTableHead = ({ headCells }: CustomTableHeaderProps) => {
           <TableCell
             key={headCell.id as string}
             align={headCell.isNumeric ? 'right' : 'center'}
-            padding={headCell.isPaddingDisabled ? 'none' : 'normal'}
+            padding={headCell.isPaddingDisabled ? 'none' : 'none'}
             colSpan={headCell.id === 'name' ? 2 : 1}
           >
             {headCell.label}

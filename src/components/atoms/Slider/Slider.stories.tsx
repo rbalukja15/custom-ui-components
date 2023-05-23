@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import * as React from 'react'
 
 import { RangeSlider } from './index'
@@ -21,8 +21,16 @@ const SliderExample = props => {
   )
 }
 
-storiesOf('atoms/RangeSlider', module)
-  .add('Slider with 2 limits', () => (
+const meta: Meta<typeof SliderExample> = {
+  title: 'atoms/RangeSlider',
+  component: SliderExample,
+}
+
+export default meta
+type Story = StoryObj<typeof SliderExample>
+
+export const Basic: Story = {
+  render: () => (
     <SliderExample
       min={-50}
       max={100}
@@ -30,8 +38,11 @@ storiesOf('atoms/RangeSlider', module)
       barColor={BASE_COLORS.COLOR_RED_800}
       fillerColor={BASE_COLORS.COLOR_GREEN_500}
     />
-  ))
-  .add('Slider with 1 limit', () => (
+  ),
+}
+
+export const With1Limits: Story = {
+  render: () => (
     <SliderExample
       min={-50}
       max={100}
@@ -39,8 +50,11 @@ storiesOf('atoms/RangeSlider', module)
       barColor={BASE_COLORS.COLOR_RED_800}
       fillerColor={BASE_COLORS.COLOR_GREEN_500}
     />
-  ))
-  .add('Slider inverted track', () => (
+  ),
+}
+
+export const InvertedSlider: Story = {
+  render: () => (
     <SliderExample
       min={-50}
       max={100}
@@ -49,4 +63,5 @@ storiesOf('atoms/RangeSlider', module)
       fillerColor={BASE_COLORS.COLOR_GREEN_500}
       track="inverted"
     />
-  ))
+  ),
+}

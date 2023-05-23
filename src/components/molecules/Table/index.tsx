@@ -87,7 +87,7 @@ export const CustomTable = ({
         <Box sx={{ display: 'flex' }}>
           <Box sx={{ flexGrow: 1 }}>{title && <TableToolbar numSelected={0} title={title} />}</Box>
           {headerActionComponent && (
-            <Box sx={{ p: 2 }} data-testid={'custom-header-action'}>
+            <Box sx={{ py: 2 }} data-testid={'custom-header-action'}>
               {headerActionComponent}
             </Box>
           )}

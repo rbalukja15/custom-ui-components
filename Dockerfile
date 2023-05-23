@@ -12,7 +12,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # Build the app
-RUN yarn build-storybook
+RUN yarn build:storybook
 
 # Bundle static assets with nginx
 FROM nginx:stable-alpine

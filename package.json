@@ -13,7 +13,7 @@
   "scripts": {
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
-    "build:storybook": "npm run build:svg && storybook build -c .storybook -o public/storybook",
+    "build:storybook": "npm run storybook build -c .storybook -o public/storybook",
     "build": "yarn run build:esm && yarn run build:cjs",
     "lint:fix": "eslint src --fix",
     "lint": "eslint src",

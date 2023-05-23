@@ -15,6 +15,7 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:storybook": "npm run storybook build -c .storybook -o public/storybook",
     "build": "yarn run build:esm && yarn run build:cjs",
+    "sb-build": "sb build",
     "lint:fix": "eslint src --fix",
     "lint": "eslint src",
     "prebuild": "rimraf build/*",
